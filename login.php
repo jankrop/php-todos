@@ -39,10 +39,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <html lang="pl">
     <head>
         <title>Zaloguj się</title>
+        <link rel="stylesheet" type="text/css" href="style.css">
     </head>
     <body>
+        <header>
+            <p>Aplikacja TODO</p>
+            <a href="login.php">Logowanie</a>
+            <a href="register.php">Rejestracja</a>
+        </header>
+        <p>Logowanie</p>
         <?php if (isset($error)) { ?>
-            <p style="color: red;"><?= $error ?></p>
+            <p class="error"><?= $error ?></p>
         <?php } ?>
         <form method="post" action="">
             <label for="username">Nazwa użytkownika:</label><br>
@@ -51,5 +58,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <input id="password" name="password" type="password"><br><br>
             <button type="submit">Zaloguj</button>
         </form>
+
     </body>
 </html>

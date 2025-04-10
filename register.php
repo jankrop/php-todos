@@ -66,31 +66,37 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Logowanie</title>
+        <link rel="stylesheet" type="text/css" href="style.css">
     </head>
     <body>
-        <h1>Logowanie</h1>
+        <header>
+            <p>Aplikacja TODO</p>
+            <a href="login.php">Logowanie</a>
+            <a href="register.php">Rejestracja</a>
+        </header>
+        <p>Rejestracja</p>
         <?php if (isset($error)) { ?>
-            <p style="color: red;"><?= $error; ?></p>
+            <p class="error"><?= $error; ?></p>
         <?php } ?>
         <form action="" method="post">
-            <label for="username">Nazwa użytkownika</label>
+            <label for="username">Nazwa użytkownika</label><br>
             <input type="text" name="username" id="username"
-                   value="<?= isset($_POST['username']) ? $_POST['username'] : '' ?>">
+                   value="<?= isset($_POST['username']) ? $_POST['username'] : '' ?>"><br>
             <br>
 
-            <label for="email">Adres e-mail</label>
+            <label for="email">Adres e-mail</label><br>
             <input type="email" name="email" id="email"
-                   value="<?= isset($_POST['email']) ? $_POST['email'] : '' ?>">
+                   value="<?= isset($_POST['email']) ? $_POST['email'] : '' ?>"><br>
             <br>
 
-            <label for="password1">Hasło</label>
+            <label for="password1">Hasło</label><br>
             <input type="password" name="password1" id="password1"
-                   value="<?= isset($_POST['password1']) ? $_POST['password1'] : '' ?>">
+                   value="<?= isset($_POST['password1']) ? $_POST['password1'] : '' ?>"><br>
             <br>
 
-            <label for="password2">Powtórz hasło</label>
-            <input type="text" name="password2" id="password2"
-                   value="<?= isset($_POST['password2']) ? $_POST['password2'] : '' ?>">
+            <label for="password2">Powtórz hasło</label><br>
+            <input type="password" name="password2" id="password2"
+                   value="<?= isset($_POST['password2']) ? $_POST['password2'] : '' ?>"><br>
             <br>
 
             <button type="submit">Utwórz konto</button>
