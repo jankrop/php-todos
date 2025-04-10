@@ -8,7 +8,36 @@ if (isset($_SESSION['username'])) {
 
 $conn = mysqli_connect('localhost', 'root', '', 'php_2025_1');
 
-function createAccount() {
+function validatePassword($password): bool {
+    global $error;
+
+    if (strlen($password) < 8) {
+        $error = 'Hasło jest zbyt krótkie';
+        return false;
+    }
+
+    // Check if password contains at least one number
+    if (!preg_match('/\d/', $password)) {
+        $error = 'Hasło nie zawiera cyfr';
+        return false;
+    }
+
+    // Check if password contains at least one uppercase letter
+    if (!preg_match('/[A-Z]/', $password)) {
+        $error = 'Hasło nie zawiera wielkich liter';
+        return false;
+    }
+
+    // Check if password contains at least one special character
+    if (!preg_match('/[\W_]/', $password)) {
+        $error = 'Hasło nie zawiera znaków specjalnych';
+        return false;
+    }
+
+    return true;
+}
+
+function createAccount(): void {
     global $conn, $error;
 
     $username = $_POST['username'];
@@ -21,6 +50,10 @@ function createAccount() {
         return;
     } else {
         $password = $password1;
+    }
+
+    if (!validatePassword($password)) {
+        return;
     }
 
     $emailExists = $conn->prepare("SELECT email FROM Users WHERE email = ?");
@@ -100,5 +133,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <br>
 
             <button type="submit">Utwórz konto</button>
+            <br>
         </form>
+        <small class="password-info">Hasło musi mieć przynajmniej 8 liter i zawierać cyfrę, wielką literę i znak specjalny</small>
 </html>
