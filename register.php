@@ -55,7 +55,9 @@ function createAccount() {
     $conn->close();
 }
 
-createAccount();
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    createAccount();
+}
 ?>
 
 <!DOCTYPE html>

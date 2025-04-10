@@ -25,6 +25,7 @@ $tasks = $tasksStmt->get_result();
     </head>
     <body>
         <h1>Witaj <?= $_SESSION['username'] ?></h1>
+        <p><a href="logout.php">Wyloguj się</a></p>
         <?php while ($row = $tasks->fetch_assoc()) {
             echo $row['name'] . '<br>';
         } ?>
