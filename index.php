@@ -9,7 +9,7 @@ if (!isset($_SESSION['username'])) {
 $conn = mysqli_connect('localhost', 'root', '', 'php_2025_1');
 
 $tasksStmt = $conn->prepare("
-    SELECT name, completed, date_created FROM Todos 
+    SELECT * FROM Todos 
     WHERE username = ?
     ORDER BY date_created DESC;
 ");
@@ -27,9 +27,14 @@ $tasks = $tasksStmt->get_result();
         <h1>Witaj <?= $_SESSION['username'] ?></h1>
         <p><a href="logout.php">Wyloguj się</a></p>
         <?php while ($row = $tasks->fetch_assoc()) {
-            echo $row['name'] . '<br>';
+            if ($row['completed']) {
+                echo $row['date_created'] . ': ' . '<s>' . $row['name'] . '</s>';
+            } else {
+                echo $row['date_created'] . ': ' . $row['name'] . ' <a href="completeTodo.php?id=' . $row['id'] . '">Zakończ</a>';
+            }
+            echo ' <a href="deleteTodo.php?id=' . $row['id'] . '">Usuń</a><br>';
         } ?>
-        <form method="post" action="add_todo.php">
+        <form method="post" action="addTodo.php">
             <input type="text" name="name" placeholder="Dodaj zadanie">
             <input type="submit" value="Dodaj">
         </form>
