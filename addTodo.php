@@ -1,6 +1,11 @@
 <?php
 session_start();
 
+if (!isset($_SESSION['username'])) {
+    header('Location: login.php');
+    die();
+}
+
 $name = $_POST['name'];
 
 $conn = mysqli_connect('localhost', 'root', '', 'php_2025_1');
