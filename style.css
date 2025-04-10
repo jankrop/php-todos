@@ -116,3 +116,8 @@ main {
 form {
     margin-bottom: 1em;
 }
+
+.password-info {
+    max-width: 250px;
+    text-align: center;
+}
