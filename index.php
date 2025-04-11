@@ -56,6 +56,7 @@ $tasks = $tasksStmt->get_result();
                     </div>
                     <div class="actions">
                         <?php if (!$row['completed']): ?>
+                            <a href="editTodo.php?id=<?= $row['id'] ?>">Edytuj</a>
                             <a href="completeTodo.php?id=<?= $row['id'] ?>">Zakończ</a>
                         <?php endif; ?>
                         <a href="deleteTodo.php?id=<?= $row['id'] ?>">Usuń</a>
