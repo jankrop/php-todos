@@ -40,7 +40,7 @@ $tasks = $tasksStmt->get_result();
 <!--                <input type="submit" value="Dodaj">-->
 <!--            </form>-->
 <!--        </main>-->
-        <header>Cześć <?= $_SESSION['username'] ?> &nbsp;&nbsp;&nbsp; <a href="logout.php">Wyloguj się</a></header>
+        <header>Cześć <?= htmlspecialchars($_SESSION['username']) ?> &nbsp;&nbsp;&nbsp; <a href="logout.php">Wyloguj się</a></header>
         <main>
             <?php if ($tasks->num_rows == 0): ?>
                 <div>Brak zadań!</div>
@@ -52,7 +52,7 @@ $tasks = $tasksStmt->get_result();
                         <?php if ($row['completed']): ?>
                             (zrobione)
                         <?php endif; ?>
-                        <?= $row['name'] ?>
+                        <?= htmlspecialchars($row['name']) ?>
                     </div>
                     <div class="actions">
                         <?php if (!$row['completed']): ?>

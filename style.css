@@ -23,8 +23,8 @@ body {
     margin: 0;
     background-image: repeating-linear-gradient(to bottom,
         #181008,
-        #1b140b 1px,
-        #181008 2px
+        #1b140b 2px,
+        #181008 4px
     );
     color: var(--primary);
     font-family: 'VT323', monospace;
@@ -86,6 +86,12 @@ input {
 input::placeholder, .done .name {
     color: var(--dim);
     text-shadow: 0 0 5px var(--dim);
+}
+
+input:-webkit-autofill {
+    -webkit-background-clip: text;
+    -webkit-box-shadow: 0 0 0px 1000px transparent inset;
+    -webkit-text-fill-color: var(--primary);
 }
 
 a:hover, button:hover {
